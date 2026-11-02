@@ -58,6 +58,13 @@ function Hero() {
               className="h-48 w-48 rounded-full object-cover shadow-xl border-2 border-teal ring-4 ring-teal/20"
               width={192}
               height={192}
+              onError={(e) => {
+                const target = e.currentTarget
+                if (!target.dataset.fallback) {
+                  target.dataset.fallback = '1'
+                  target.src = './profile.jpg'
+                }
+              }}
             />
           </div>
         ) : (
@@ -216,11 +223,26 @@ function Resume() {
         </div>
       </div>
       {site.cvPath ? (
-        <iframe
-          title="Kinara Hemachandra CV Preview"
-          src={site.cvPath}
-          className="h-[750px] w-full rounded-lg border border-line bg-white shadow-inner"
-        />
+        <div className="overflow-hidden rounded-lg border border-line bg-white shadow-inner">
+          <object
+            data={site.cvPath}
+            type="application/pdf"
+            className="h-[750px] w-full"
+          >
+            <iframe
+              title="Kinara Hemachandra CV Preview"
+              src={site.cvPath}
+              className="h-[750px] w-full border-0"
+            >
+              <div className="p-8 text-center text-muted">
+                <p>Your browser could not preview the PDF directly.</p>
+                <a className="btn btn-p mt-4 inline-flex" href={site.cvPath} download="Kinara_Hemachandra_CV.pdf">
+                  <Download size={16} />Download CV (PDF)
+                </a>
+              </div>
+            </iframe>
+          </object>
+        </div>
       ) : (
         <p className="text-muted">CV not connected yet.</p>
       )}

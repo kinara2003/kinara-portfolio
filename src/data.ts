@@ -1,4 +1,6 @@
 // Site content and portfolio data
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`
+
 export const site = {
   name: 'Kinara Hemachandra',
   title: 'Junior Business Analyst | Software Engineering Undergraduate',
@@ -7,9 +9,9 @@ export const site = {
   linkedin: 'https://www.linkedin.com/in/kinara-hemachandra-10a174284',
   github: 'https://github.com/kinara2003',
   location: 'Wijayaba Place, Malabe, Sri Lanka',
-  cvPath: '/Kinara_Hemachandra_CV.pdf',
+  cvPath: `${base}Kinara_Hemachandra_CV.pdf`,
   formEndpoint: '', // e.g. a Formspree URL; if empty the form opens your email app
-  photo: '/profile.jpg',
+  photo: `${base}profile.jpg`,
 }
 
 export type Section = { h: string; p?: string; l?: string[] }
